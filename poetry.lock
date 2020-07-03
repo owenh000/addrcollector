@@ -6,23 +6,11 @@ optional = false
 python-versions = "*"
 version = "0.6.2"
 
-[[package]]
-category = "main"
-description = "PyXDG contains implementations of freedesktop.org standards in python."
-name = "pyxdg"
-optional = false
-python-versions = "*"
-version = "0.26"
-
 [metadata]
-content-hash = "70038f659f2abeeaf54cb8be23a9fb039d1736bfe188d21042c8f1e19899cd54"
+content-hash = "ce8b6cb43fd31e69558691c2d4351b3a52bc4d9aace31d16e72ec4f28c131038"
 python-versions = "^3.6"
 
 [metadata.files]
 docopt = [
     {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
-]
-pyxdg = [
-    {file = "pyxdg-0.26-py2.py3-none-any.whl", hash = "sha256:1948ff8e2db02156c0cccd2529b43c0cff56ebaa71f5f021bbd755bc1419190e"},
-    {file = "pyxdg-0.26.tar.gz", hash = "sha256:fe2928d3f532ed32b39c32a482b54136fe766d19936afc96c8f00645f9da1a06"},
 ]

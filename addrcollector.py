@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Depends: python3-xdg, python3-docopt
+# Depends: python3-docopt
 """addrcollector: Collect email addresses for later retrieval, or
 search the database of previously collected addresses.
 
@@ -22,7 +22,8 @@ Options, arguments, and commands:
 
 import email.parser
 from email.utils import getaddresses
-import os.path
+import os
+from pathlib import Path
 import re
 import sqlite3
 import sys
@@ -30,7 +31,7 @@ import time
 import warnings
 
 from docopt import docopt
-import xdg.BaseDirectory
+
 
 class Database:
     """Manage the sqlite3 addrcollector database."""
@@ -41,12 +42,15 @@ class Database:
         cleaning database *unless* opening only to search, and save
         the connection.
         """
-        self.db_path = os.path.join(xdg.BaseDirectory.save_data_path
-                                    ('addrcollector'), 'database.db')
-        if os.path.exists(self.db_path): new=False
-        else: new=True
+        envvar = os.environ.get('XDG_DATA_HOME')
+        if envvar:
+            data_dir = Path(envvar)
+        else:
+            data_dir = Path(os.path.expandvars('$HOME'), '.local', 'share')
+        self.db_path = os.path.join(data_dir, 'addrcollector', 'database.db')
         self.conn = sqlite3.connect(self.db_path)
-        if new==True:
+        if not os.path.exists(self.db_path):
+            # New database
             self.conn.execute('''CREATE TABLE address
                                   (name TEXT,
                                    address TEXT PRIMARY KEY,
