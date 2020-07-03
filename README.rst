@@ -45,15 +45,59 @@ updated if the new one is longer than the old one.
      WORD          Search key.
      -h --help     Usage help.
 
-------------
-Dependencies
-------------
+--------------------
+Installing from PyPI
+--------------------
 
-addrcollector depends on the following Python packages not in the
-standard library:
+addrcollector is published on PyPI and can be installed with pip.
 
-- docopt
-- xdg
+1. Install the addrcollector package.
+
+   .. code:: console
+
+      $ pip3 install addrcollector
+
+   This should provide a ``~/.local/bin/addrcollector`` script that you
+   can execute.
+
+2. If that path is included in your `PATH` environment variable, you
+   can run the ``addrcollector`` command without typing the entire
+   path., To set up this, if it hasn't been done already, add the
+   following code in your ``~/.bash_profile`` (it may be
+   ``~/.profile`` for a shell other than Bash):
+
+   .. code:: bash
+
+      if [ -d "$HOME/.local/bin" ] ; then
+          PATH="$HOME/.local/bin:$PATH"
+      fi
+
+-----------------------
+Running from repository
+-----------------------
+
+If you have cloned the repository, you can run addrcollector from it
+directly.
+
+1. Install Poetry:
+
+   .. code:: console
+
+      $ pip3 install poetry
+
+2. With the addrcollector repository root as your current directory,
+   use Poetry to install the dependencies:
+
+   .. code:: console
+
+      $ poetry install
+
+3. Now that the dependencies have been installed, use Poetry to run
+   addrcollector:
+
+   .. code:: console
+
+      $ poetry run addrcollector
 
 ---------------------
 Copyright and License
