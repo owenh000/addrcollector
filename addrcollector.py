@@ -37,11 +37,7 @@ class Database:
     """Manage the sqlite3 addrcollector database."""
 
     def __init__(self):
-        """
-        Create path/database if necessary, connect, 5% chance of
-        cleaning database *unless* opening only to search, and save
-        the connection.
-        """
+        """Create database if necessary, connect, save the connection"""
         envvar = os.environ.get('XDG_DATA_HOME')
         if envvar:
             data_dir = Path(envvar)
@@ -55,16 +51,18 @@ class Database:
                                   (name TEXT,
                                    address TEXT PRIMARY KEY,
                                    time INTEGER)''')
-        # Comment out the following to disable automatic database purging
+        # This can be used for 5% chance of purging out any records that are
+        # older than 10 years:
         #if not arguments['--search'] and random.random() < 0.05:
         #    self.conn.execute('DELETE FROM address WHERE time < ?',
-        #                      (int(time.time()) - 1262277050,)) # 40 years
+        #                      (int(time.time()) - 315569260,))
 
     def add_address(self, name, address):
-        """
-        Add an entry to the database.  If it already exists, then (1)
-        update the time and (2) if the new name is longer, then update
-        the name.
+        """Add an entry to the database.
+
+        If it already exists, then (1) update the time and (2) if the
+        new name is longer, then update the name.
+
         """
         address=address.lower()
         if not re.match(r'[^@]+@[^@]+\.[^@]+', address):
@@ -88,9 +86,11 @@ class Database:
                               (int(time.time()), address))
 
     def search(self, strings):
-        """
-        Search for addresses with any of arguments in strings, which
+        """Search for addresses.
+
+        Search in the database for any of arguments in strings, which
         is a list of queries.
+
         """
         search_str = ' OR '.join(['address||name LIKE ?' for string in strings])
         search_params = tuple('%{0}%'.format(string) for string in strings)
@@ -107,6 +107,7 @@ class Database:
         self.conn.commit()
         self.conn.close()
 
+
 def parse_email(src):
     """Collect addresses from headers of email message."""
     parser = email.parser.HeaderParser()
@@ -121,6 +122,7 @@ def parse_email(src):
     for addr in addrs:
         yield(addr)
 
+
 def main():
     arguments = docopt(__doc__)
     db = Database()
@@ -133,6 +135,7 @@ def main():
         for result_item in db.search(arguments['WORD']):
             print('{} {:<30} {}'.format(*result_item))
     db.close()
+
 
 if __name__ == '__main__':
     main()
