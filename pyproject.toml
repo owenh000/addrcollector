@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "addrcollector"
+version = "1.0.1"
+description = "A Python application for collecting email addresses from email messages"
+license = "CC0-1.0"
+authors = ["Owen T. Heisler <writer@owenh.net>"]
+readme = "README.rst"
+homepage = "https://owenh.net/addrcollector"
+repository = "https://github.com/owenh000/addrcollector"
+keywords = ["email"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications :: Email :: Address Book"
+]
+
+[tool.poetry.dependencies]
+docopt = "^0.6"
+python = "^3.6"
+pyxdg = "^0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+addrcollector = 'addrcollector:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

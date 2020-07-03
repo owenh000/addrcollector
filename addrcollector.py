@@ -117,7 +117,7 @@ def parse_email(src):
     for addr in addrs:
         yield(addr)
 
-if __name__ == '__main__':
+def main():
     arguments = docopt(__doc__)
     db = Database()
     if arguments['--add']:
@@ -129,3 +129,6 @@ if __name__ == '__main__':
         for result_item in db.search(arguments['WORD']):
             print('{} {:<30} {}'.format(*result_item))
     db.close()
+
+if __name__ == '__main__':
+    main()
