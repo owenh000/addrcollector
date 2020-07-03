@@ -23,7 +23,6 @@ Options, arguments, and commands:
 import email.parser
 from email.utils import getaddresses
 import os.path
-import random
 import re
 import sqlite3
 import sys
@@ -52,9 +51,10 @@ class Database:
                                   (name TEXT,
                                    address TEXT PRIMARY KEY,
                                    time INTEGER)''')
-        if not arguments['--search'] and random.random() < 0.05:
-            self.conn.execute('DELETE FROM address WHERE time < ?',
-                              (int(time.time()) - 1262277050,)) # 40 years
+        # Comment out the following to disable automatic database purging
+        #if not arguments['--search'] and random.random() < 0.05:
+        #    self.conn.execute('DELETE FROM address WHERE time < ?',
+        #                      (int(time.time()) - 1262277050,)) # 40 years
 
     def add_address(self, name, address):
         """
