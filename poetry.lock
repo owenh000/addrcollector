@@ -1,16 +1,7 @@
-[[package]]
-category = "main"
-description = "Pythonic argument parser, that will make you smile"
-name = "docopt"
-optional = false
-python-versions = "*"
-version = "0.6.2"
+package = []
 
 [metadata]
-content-hash = "ce8b6cb43fd31e69558691c2d4351b3a52bc4d9aace31d16e72ec4f28c131038"
+content-hash = "ae1f216c71b9b712a5c479d19bf075b718c35d9248fd89cb1eb7624528ec5ad1"
 python-versions = "^3.6"
 
 [metadata.files]
-docopt = [
-    {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
-]

@@ -19,7 +19,6 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-docopt = "^0.6"
 python = "^3.6"
 
 [tool.poetry.dev-dependencies]

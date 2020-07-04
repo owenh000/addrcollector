@@ -5,10 +5,13 @@ details, see the Git commit history.
 
 This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 2.0.0 - Unreleased
 
+- Added usage examples to README and --help output
 - Added this CHANGELOG
+- Changed arguments to use subcommands (not backward compatible!)
 - Extended main docstring for help text
+- Removed dependency on docopt package
 
 ## 1.0.2 - 2020-07-02
 

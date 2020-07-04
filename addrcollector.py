@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# Depends: python3-docopt
 """Collects email addresses in a database or searches the database.
 
 Addresses can be added manually or imported from a message passed on
@@ -9,23 +8,13 @@ the display name is updated if the new one is longer than the old
 one. Once addresses have been added, the database can be searched with
 one or more keywords.
 
-Usage:
-  addrcollector.py --add ADDRESS [NAME]
-  addrcollector.py --import
-  addrcollector.py --search WORD...
-  addrcollector.py --help
-
-Options, arguments, and commands:
-  -a --add      Manually add an address.
-  ADDRESS       Email address to add to database.
-  NAME          Name to associate with email address (optional).
-  -i --import   Import addresses from headers of one message via standard input.
-  -s --search   Search database for addresses; multiple keys are ORed.
-  WORD          Search key.
-  -h --help     Usage help.
-
+Usage examples:
+  addrcollector add jon@mykolab.com "Jon Smith"
+  addrcollector import < mymail.msg
+  addrcollector search jon
 """
 
+import argparse
 import email.parser
 from email.utils import getaddresses
 import os
@@ -36,7 +25,25 @@ import sys
 import time
 import warnings
 
-from docopt import docopt
+
+def parse_args():
+    """Parse arguments."""
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__)
+    subp = parser.add_subparsers(title='actions',
+                                 dest='action', required=True)
+    addp = subp.add_parser('add', aliases=['a'],
+                           help='Manually add an address to the database')
+    addp.add_argument('address', help='Email address')
+    addp.add_argument('name', help='Display name (optional)', nargs='?')
+    impp = subp.add_parser('import', aliases=['i'],
+                    help='Import addresses from a message on standard input')
+    srchp = subp.add_parser('search',  aliases=['s'],
+                            help='Search the database for addresses')
+    srchp.add_argument('word', nargs='+',
+                help='Keyword to search for (may be specified more than once)')
+    return parser.parse_args()
 
 
 class Database:
@@ -130,15 +137,15 @@ def parse_email(src):
 
 
 def main():
-    arguments = docopt(__doc__)
+    args = parse_args()
     db = Database()
-    if arguments['--add']:
-        db.add_address(name=arguments['NAME'], address=arguments['ADDRESS'])
-    elif arguments['--import']:
+    if args.action in ['add', 'a']:
+        db.add_address(name=args.name, address=args.address)
+    elif args.action in ['import', 'i']:
         for addr in parse_email(sys.stdin.read()):
             db.add_address(name=addr[0], address=addr[1])
-    elif arguments['--search']:
-        for result_item in db.search(arguments['WORD']):
+    else: #args.action in ['search', 's']
+        for result_item in db.search(args.word):
             print('{} {:<30} {}'.format(*result_item))
     db.close()
 

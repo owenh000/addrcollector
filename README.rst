@@ -24,26 +24,27 @@ Dates and display names are also collected. If an address is seen more
 than once, then (1) the date is updated and (2) the display name is
 updated if the new one is longer than the old one.
 
+For example, to add an address manually (the display name is optional):
+
 .. code:: console
 
-   $ addrcollector --help
-   addrcollector: Collect email addresses for later retrieval, or
-   search the database of previously collected addresses.
+   $ addrcollector add jon@example.com "Jon Smith"
+   $ addrcollector add sven@example.com
 
-   Usage:
-     addrcollector.py --add ADDRESS [NAME]
-     addrcollector.py --import
-     addrcollector.py --search WORD...
-     addrcollector.py --help
+To import addresses from a message passed on standard input:
 
-   Options, arguments, and commands:
-     -a --add      Manually add an address.
-     ADDRESS       Email address to add to database.
-     NAME          Name to associate with email address (optional).
-     -i --import   Import addresses from headers of one message via standard input.
-     -s --search   Search database for addresses; multiple keys are ORed.
-     WORD          Search key.
-     -h --help     Usage help.
+.. code:: console
+
+   $ addrcollector import < mymail.msg
+
+To search for addresses using keywords (multiple keywords may be
+given and are ORed):
+
+.. code:: console
+
+   $ addrcollector search jon sven
+   2020-07-03 jon@example.com                Jon Smith
+   2020-07-03 sven@example.com
 
 --------------------
 Installing from PyPI
