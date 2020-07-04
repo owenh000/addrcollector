@@ -9,7 +9,7 @@ one. Once addresses have been added, the database can be searched with
 one or more keywords.
 
 Usage examples:
-  addrcollector add jon@mykolab.com "Jon Smith"
+  addrcollector add jon@example.com "Jon Smith"
   addrcollector import < mymail.msg
   addrcollector search jon
 """
