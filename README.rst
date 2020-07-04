@@ -63,7 +63,7 @@ addrcollector is published on PyPI and can be installed with pip.
 
 2. If that path is included in your `PATH` environment variable, you
    can run the ``addrcollector`` command without typing the entire
-   path., To set up this, if it hasn't been done already, add the
+   path. To set this up (if it hasn't been done already), add the
    following code in your ``~/.bash_profile`` (it may be
    ``~/.profile`` for a shell other than Bash):
 
