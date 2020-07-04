@@ -8,6 +8,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Unreleased
 
 - Added this CHANGELOG
+- Extended main docstring for help text
 
 ## 1.0.2 - 2020-07-02
 

@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 # Depends: python3-docopt
-"""addrcollector: Collect email addresses for later retrieval, or
-search the database of previously collected addresses.
+"""Collects email addresses in a database or searches the database.
+
+Addresses can be added manually or imported from a message passed on
+standard input. Dates and display names are also collected. If an
+address is seen more than once, then (1) the date is updated and (2)
+the display name is updated if the new one is longer than the old
+one. Once addresses have been added, the database can be searched with
+one or more keywords.
 
 Usage:
   addrcollector.py --add ADDRESS [NAME]
