@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "addrcollector"
-version = "1.0.2"
+version = "2.0.0"
 description = "A Python application for collecting email addresses from email messages"
 license = "CC0-1.0"
 authors = ["Owen T. Heisler <writer@owenh.net>"]

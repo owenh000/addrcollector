@@ -5,7 +5,7 @@ details, see the Git commit history.
 
 This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2.0.0 - Unreleased
+## 2.0.0 - 2020-07-03
 
 - Added usage examples to README and --help output
 - Added this CHANGELOG
