@@ -100,6 +100,13 @@ directly.
 
       $ poetry run addrcollector
 
+--------
+Sponsors
+--------
+
+Thank you to an anonymous sponsor for supporting my work on this and
+other projects! ✨
+
 ---------------------
 Copyright and License
 ---------------------
